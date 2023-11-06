@@ -35,7 +35,7 @@ public class SecurityConfig {
 		.authorizeHttpRequests(auth -> auth
 				.requestMatchers((mvcMatcherBuilder.pattern("/admin/**"))).hasAuthority("ROLE_ADMIN")
 				.requestMatchers((mvcMatcherBuilder.pattern("/auth/**"))).permitAll()
-				.requestMatchers(mvcMatcherBuilder.pattern("/users/**")).permitAll()
+				.requestMatchers(mvcMatcherBuilder.pattern("/users/**")).hasAuthority("ROLE_USER")
 				.anyRequest().authenticated()).httpBasic(Customizer.withDefaults());
 		
 		return http.build();
